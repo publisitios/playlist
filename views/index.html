@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Welcome the youtube playlist app</title>
+      <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
+   </head>
+   <body >
+      <center>
+         <h1> Welcome to the Playlist APP</h1>
+         <div id="player"></div>
+         <!-- YoyTube API   (and video player) will replace this <div> tag with an <iframe>. -->
+         <form action"/playlist/add" method="POST" >
+         <input placeholder="Enter a Youtube URL to add a song to the Playlist" type="text" name="videoURL" style="width:640px;" />
+         <button>Add Song</button>
+         </form>
+         <h2> Your Current Playlist: </h2>
+         {{playlist}}
+         <table border="1">
+            <tr>
+               <th>Song Title</th>
+               <th>Song Rating</th>
+               <th>Rate</th>
+               <th>Delete</th>
+            </tr>
+            <tr>
+               <td>{{songTitle}}</td>
+               <td>{{rating}}</td>
+               <td>
+                  <form method="POST" action="/playlist/rate?_method=PUT">
+                     <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                     </select>
+                     <button>Rate Song</button>
+                  </form>
+               </td>
+               <td>
+                  <form method="POST" action="/playlist/delete?_method=DELETE">
+                     <button>Delete Song</button>
+                  </form>
+               </td>
+            </tr>
+         </table>
+         {{/playlist}}
+      </center>
+      
+      <!-- Code for YouTube API - more info https://developers.google.com/youtube/iframe_api_reference#Queueing_Functions -->
+      <script src="../googleAPI.js"></script>
+   </body>
+</html>
